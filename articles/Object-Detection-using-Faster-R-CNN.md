@@ -37,7 +37,7 @@ ms.devlang:   python
 The above are examples images and object annotations for the Grocery data set (left) and the Pascal VOC data set (right) used in this tutorial.
 
 _Faster R-CNN_ is an object detection algorithm proposed by _Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun_ in 2015.
-The research paper is titled 'Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks', and is archived at [https://arxiv.org/abs/1506.01497]([https://arxiv.org/abs/1506.01497]).
+The research paper is titled 'Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks', and is archived at [https://arxiv.org/abs/1506.01497](https://arxiv.org/abs/1506.01497).
 Faster R-CNN builds on previous work to efficiently classify object proposals using deep convolutional networks. 
 Compared to previous work, Faster R-CNN employs a _region proposal network_ and does not require an external method for candidate region proposals.
 
@@ -255,7 +255,7 @@ Now you're set to train on the Pascal VOC 2007 data using `python run_faster_rcn
 
 ### Run Faster R-CNN on your own data
 
-Preparing your own data and annotating it with ground truth bounding boxes is described [here](https://docs.microsoft.com/en-us/cognitive-toolkit/Object-Detection-using-Fast-R-CNN#train-on-your-own-data).
+Preparing your own data and annotating it with ground truth bounding boxes is described in [Object detection using Fast R-CNN](/cognitive-toolkit/Object-Detection-using-Fast-R-CNN#train-on-your-own-data).
 After storing your images in the described folder structure and annotating them please run
 
 `python Examples/Image/Detection/utils/annotations/annotations_helper.py`

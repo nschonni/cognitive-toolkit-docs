@@ -32,17 +32,21 @@ Install Microsoft Visual Studio 2017 for Windows. A link to the download can be 
 
 The Community Version of Visual Studio 2017 is sufficient to build CNTK.
 
-During the installation process, please select Desktop development with C++ workload:
+During the installation process, please select 'Universal Windows Platform development', '.NET desktop development', 'Desktop development with C++', and 'Python development' workloads:
 
 ![im1](./pictures/setup/VS2017Workloads.jpg)
 
-Besides, On the individual components screen make sure you add 'VC++ 2017 version 15.4 v14.11 toolset' to your installation for build with CUDA 9.0:
+Besides, On the individual components screen make sure you add 'VC++ 2017 version 15.4 v14.11 toolset' and 'Visual C++ runtime for UWP' to your installation:
 
-![im1](./pictures/setup/VS2017VCTools14.11.jpg)
+![im1](./pictures/setup/VS2017VCTools14.11AndVCforUWP.png)
+
+Lastly, add 'Windows 10 SDK (10.0.16299.0) for Desktop C++ [x86 and x64]':
+
+![im1](./pictures/setup/WindowsSDK10.png)
 
 ### Preexisting Visual Studio 2017 installation
 
-You are also required to have the 'VC++ 2017 version 15.4 v14.11 toolset' installed on your system. To check open the Windows "Control Panel -> Programs -> Programs and Features' and select 'Visual Studio Community 2017' from the list of installed programs. This will start the Visual Studio setup again and allows you to make sure the 'VC++ 2017 version 15.4 v14.11 toolset' feature is installed on your system (see picture above).
+You are required to have the 'VC++ 2017 version 15.4 v14.11 toolset', 'Visual C++ runtime for UWP' and 'Windows 10 SDK (10.0.16299.0) for Desktop C++ [x86 and x64]' installed on your system. To check open the Windows "Control Panel -> Programs -> Programs and Features' and select 'Visual Studio Community 2017' from the list of installed programs. This will start the Visual Studio setup again and allows you to make sure the aforementioned components are installed on your system (see picture above).
 
 > [!NOTE]
 > If `VS2017INSTALLDIR` environment variable was not set by the Visual Studio installer, set it manually. The exact installation directory depends on both the *version* (2017 in this case) and *offering* (*Community*, *Enterprise*, etc) of Visual Studio, according to the following pattern: `C:\Program Files (x86)\Microsoft Visual Studio\<version>\<offering>`.
@@ -76,11 +80,8 @@ Open a standard windows command shell, and execute these command
 
 ```
 c: && md \repos && cd \repos
-git clone https://github.com/Microsoft/cntk
+git clone --recursive https://github.com/Microsoft/cntk
 cd cntk
-git submodule update --init external/gsl
-git submodule update --init Source/CNTKv2LibraryDll/proto/onnx/onnx_repo
-git submodule update --init Source/Multiverso
 ```
 
 This puts all the required source code for a standard build onto your system. If you plan on making modifications to the CNTK code, you should read the information on [Developing and Testing](./Developing-and-Testing.md).
@@ -93,7 +94,7 @@ setx CNTK_ENABLE_ASGD false
 
 ##  MKL
 
-The default CNTK math library is the [Intel Math Kernel Library (Intel MKL)](https://software.intel.com/en-us/intel-mkl/). Follow [this page](./Setup-MKL-on-Windows.md) to install it
+The default CNTK math library is the [Intel Math Kernel Library (Intel MKL)](https://software.intel.com/intel-mkl/). Follow [this page](./Setup-MKL-on-Windows.md) to install it
 
 ### MKL-DNN
 * Download MKL-DNN source and build with MKL_PATH as target path. Check build instructions in [Setup MKL-DNN on Windows](./Setup-BuildMklDnn-VS17.md)
@@ -106,13 +107,13 @@ The default CNTK math library is the [Intel Math Kernel Library (Intel MKL)](htt
 
 ## MS-MPI
 
-Install version 7 (7.0.12437.6) of Microsoft MPI (MS-MPI) from [this download page](https://www.microsoft.com/en-us/download/details.aspx?id=49926), marked simply as "Version 7" in the page title. Click on the Download button, and then select both `msmpisdk.msi` and `MSMpiSetup.exe`.
+Install version 7 (7.0.12437.6) of Microsoft MPI (MS-MPI) from [this download page](https://www.microsoft.com/download/details.aspx?id=52981), marked simply as "Version 7" in the page title. Click on the Download button, and then select both `msmpisdk.msi` and `MSMpiSetup.exe`.
 
 ## Boost
 
-Follow these steps to install the [Boost Library](http://www.boost.org/) on your system:
+Follow these steps to install the [Boost Library](https://www.boost.org/) on your system:
 
-* Download and install Boost version 1.60 (you need the `msvc-14.0` binaries) from this <a href="http://sourceforge.net/projects/boost/files/boost-binaries/1.60.0/boost_1_60_0-msvc-14.0-64.exe/download" target="_blank">download location</a> on Sourceforge.
+* Download and install Boost version 1.60 (you need the `msvc-14.0` binaries) from this [download location](https://sourceforge.net/projects/boost/files/boost-binaries/1.60.0/boost_1_60_0-msvc-14.0-64.exe/download) on Sourceforge.
 * Set the environment variable `BOOST_INCLUDE_PATH` to your Boost installation, e.g.: 
 
 ```
@@ -159,7 +160,7 @@ Set the environment variable `CUB_PATH` pointing to that location, e.g.:
 
 ## OPTIONAL. SWIG.
 
-If you want to take advantage of CNTK from Python, you will need to install [SWIG](http://swig.org). SWIG is also a requirement to build the CNTK Evaluation libraries (for C#/.NET or Java).
+If you want to take advantage of CNTK from Python, you will need to install [SWIG](https://swig.org). SWIG is also a requirement to build the CNTK Evaluation libraries (for C#/.NET or Java).
 
 Please download the version `SWIG 3.0.10` from [this site](https://sourceforge.net/projects/swig/files/swigwin/).
 
@@ -173,7 +174,7 @@ Quick installation check: If you followed the instruction above and used the sam
 
 ## OPTIONAL. OpenCV
 
-CNTK 2.2 requires [Open Source Computer Vision (OpenCV)](http://opencv.org/) to be installed but it is optional for CNTK 2.3. Follow [this page](./Setup-OpenCV-on-Windows.md) for further steps.
+CNTK 2.2 requires [Open Source Computer Vision (OpenCV)](https://opencv.org/) to be installed but it is optional for CNTK 2.3. Follow [this page](./Setup-OpenCV-on-Windows.md) for further steps.
 
 Set the environment variable `OPENCV_PATH_V31` pointing to the OpenCV build folder, e.g.
 
@@ -185,7 +186,7 @@ Quick installation check: If you followed the instruction above and used the sam
 
 ## OPTIONAL. zlib and libzip
 
-If you plan to build the **CNTK Image Reader** you require [zlib](http://zlib.net/) and [libzip](http://nih.at/libzip/) libraries. 
+If you plan to build the **CNTK Image Reader** you require [zlib](https://zlib.net/) and [libzip](https://libzip/org/) libraries. 
 
 ## zlib and libzip
 
@@ -277,7 +278,7 @@ The value for the `CNTK_PY36_PATH`, `CNTK_PY35_PATH`, or `CNTK_PY27_PATH` enviro
 
 ## OPTIONAL. Java
 
-To build the Java bindings for the CNTK Evaluation library, install the [SWIG tool](#optional-swig) if you have not done so yet. Also, a Java Development Kit (JDK) is required. Currently we use 64 bit [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (JDK Version 1.8.0_131).
+To build the Java bindings for the CNTK Evaluation library, install the [SWIG tool](#optional-swig) if you have not done so yet. Also, a Java Development Kit (JDK) is required. Currently we use 64 bit [JDK 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) (JDK Version 1.8.0_131).
 
 Set the environment variable JAVA_HOME to point to the directory of Java installation. The following setting assumes that you have installed JDK 1.8.0_131 to C:\local\jdk1.8.0_131:
 
@@ -385,7 +386,6 @@ Finished Epoch [1]: loss = 0.297748 * 25600 2.383s (10742.8 samples per second)
 
 ### Debugging CNTK source code in Visual Studio
 
-* If you want to use Python Tools, CNTK, and Visual Studio Code, see this [blog](http://davidcrook.io/cntk-vs-code-awesome/).
 * If you want to use Python Tools, CNTK, and Visual Studio, see [here](./Setup-CNTK-Python-Tools-For-Windows.md)
 * To debug BrainScript in CNTK with Visual Studio, follow the steps [here](./Debugging-CNTK-source-code-in-Visual-Studio.md).
 

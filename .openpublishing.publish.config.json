@@ -6,7 +6,8 @@
       "build_output_subfolder": "cntk",
       "locale": "en-us",
       "monikers": [],
-      "open_to_public_contributors": true,
+      "moniker_ranges": [],
+      "open_to_public_contributors": false,
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
@@ -21,18 +22,19 @@
     "lyn@microsoft.com"
   ],
   "branches_to_filter": [],
-  "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
-  "contribution_branch_mappings": {},
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
-      "branch": "master",
+      "branch": "main",
       "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {},
+  "docs_build_engine": {},
+  "skip_source_output_uploading": false,
+  "contribution_branch_mappings": {},
   "need_generate_pdf_url_template": false,
   "need_generate_pdf": false,
   "need_generate_intellisense": false

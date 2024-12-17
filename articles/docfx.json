@@ -31,10 +31,14 @@
 		"overwrite": [],
 		"externalReference": [],
 		"globalMetadata": {
-			"uhfHeaderId": "MSDocsHeader-cognitive-toolkit",
-			"breadcrumb_path": "/cognitive-toolkit/breadcrumb/TOC.json",
+			"brand": "azure",
+			"breadcrumb_path": "/previous-versions/cognitive-toolkit/breadcrumb/TOC.json",
 			"searchScope": ["Cognitive Toolkit"],
-			"titleSuffix": "Cognitive Toolkit - CNTK"
+			"titleSuffix": "Cognitive Toolkit - CNTK",
+			"ROBOTS": "NOINDEX,NOFOLLOW",
+                        "is_archived": true,      
+                        "feedback_system": "None",
+                        "learn_archive": "manual"
 	},
 	"fileMetadata": {},
 	"template": [],

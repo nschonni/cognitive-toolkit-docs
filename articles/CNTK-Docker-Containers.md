@@ -15,26 +15,31 @@ You can set up CNTK as a [Docker Container](https://en.wikipedia.org/wiki/Docker
 
 There are two ways of using CNTK Docker Containers:
 
-* [Using CNTK Images published at Docker Hub](#using-cntk-images-published-at-docker-hub)
-* [Building your own Images](#building-cntk-docker-images)
+- [CNTK Docker Containers](#cntk-docker-containers)
+  - [Using CNTK Images published at Docker Hub](#using-cntk-images-published-at-docker-hub)
+    - [Using Docker container to run CNTK Jupyter Notebook tutorials](#using-docker-container-to-run-cntk-jupyter-notebook-tutorials)
+  - [Building CNTK Docker Images](#building-cntk-docker-images)
 
 ## Using CNTK Images published at Docker Hub
 
-We host public CNTK Images at Docker Hub. See complete list of Images available at [CNTK Repository page at Docker Hub](https://hub.docker.com/r/microsoft/cntk/). We currently host only **runtime** configurations. *Runtime* configuration corresponds to an environment with [CNTK Binary package installed and configured](./Setup-CNTK-on-your-machine.md). This configuration contains neither CNTK source code, nor the prerequisites required to build CNTK.
+We host public CNTK Images at Docker Hub. See complete list of Images available at [CNTK Repositories page at Docker Hub](https://hub.docker.com/_/microsoft-cntk). We currently host only **runtime** configurations. *Runtime* configuration corresponds to an environment with [CNTK Binary package installed and configured](./Setup-CNTK-on-your-machine.md). This configuration contains neither CNTK source code, nor the prerequisites required to build CNTK.
 
 Note, that you need [NVIDIA Docker](https://github.com/nvidia/nvidia-docker) to use CNTK GPU-enabled images.
 
 Standard Docker commands are used to get the image:
 ```
-docker pull microsoft/cntk
+docker pull mcr.microsoft.com/cntk/release
 ```
-This will get the latest image, which today means latest available GPU runtime configuration.
+to get the latest official release image, which today means latest available GPU runtime configuration. You also can get the latest development nightly image:
+```
+docker pull mcr.microsoft.com/cntk/nightly
+```
 
 To get a specific configuration you need to add a tag. E.g.
 ```
-docker pull microsoft/cntk:2.6-cpu-python3.5
+docker pull mcr.microsoft.com/cntk/release:2.7-cpu-python3.5
 ```
-will get you CNTK 2.6 CPU runtime configuration set up for Python 3.5.
+will get you CNTK 2.7 CPU runtime configuration set up for Python 3.5.
 
 If you are unfamiliar with Docker, read [sections below](#building-cntk-docker-images) at this page.
 
@@ -46,7 +51,7 @@ We assume that you have already pulled the required images from Docker Hub. In t
 
 First create and start a CNTK container in detached mode with IP port exposed (we use port `8888` which is default for Jupyter Notebook application):
 ```
-nvidia-docker run -d -p 8888:8888 --name cntk-jupyter-notebooks -t microsoft/cntk
+nvidia-docker run -d -p 8888:8888 --name cntk-jupyter-notebooks -t mcr.microsoft.com/cntk/release
 ```
 
 Now start Jupyter Notebook server in your Docker container:
@@ -79,7 +84,7 @@ The correspondent Docker files are in the CNTK Repository at https://github.com/
 
 To build a docker image with CNTK and all its dependencies, simply clone the CNTK repository, navigate to `CNTK/Tools/docker` and use the Dockerfile you want to build from (CPU or GPU). For example, to build CNTK's GPU docker image, execute:
 ```
-docker build -t cntk CNTK-GPU-Image -f CNTK-GPU-Image/Dockerfile .
+docker build -t cntk -f CNTK-GPU-Image/Dockerfile .
 ```
 The `-f <path/to/Dockerfile>` argument is required because some patches, common for both CPU and GPU dockerfiles, need to be applied on SWIG source code.
 If you receive errors that say `Could not resolve 'archive.ubuntu.com'`
@@ -124,7 +129,7 @@ docker rm $(docker ps -a -q)
 ```
 Now try again 
 ```
-docker build -t cntk CNTK-GPU-Image
+docker build -t cntk -f CNTK-GPU-Image/Dockerfile .
 ```
 If you have a GPU you'll want to test if you can access it through a docker container once you have built the image. Try this command:
 ```

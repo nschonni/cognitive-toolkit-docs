@@ -1,7 +1,15 @@
 - name: Docs
-  href: /
-  homepage: /
+  tocHref: /
+  topicHref: /
   items:
-  - name: Cognitive Toolkit
-    tocHref: /cognitive-toolkit/
-    topicHref: /cognitive-toolkit/index
+  - name: Previous Versions
+    tocHref: /previous-versions/
+    topicHref: /previous-versions/
+    items:
+    - name: Azure
+      tocHref: /previous-versions/azure/
+      topicHref: /previous-versions/azure/index
+      items:
+      - name: Cognitive Toolkit
+        tocHref: /previous-versions/cognitive-toolkit/
+        topicHref: /previous-versions/cognitive-toolkit/index
